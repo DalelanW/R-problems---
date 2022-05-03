@@ -1,0 +1,14 @@
+###below a function that considers how much recruits ( new population) to be added to each subsequent year (iteration)
+
+ver_logistics <- function(time, parms){    #function and matrix creator
+  with(as.list(parms),{
+    y <- r * N * (1 - (N/K))   # equation for each iteration of population
+    N <- c()                   #new string
+      for (i in 1:length(N)){
+        grwth <- c(N,sum(y[1:i]))
+      }# closed loop
+
+    as.matrix(tibble(time = time, density = N))    # creates the matrix dataset
+  }
+       )
+}
