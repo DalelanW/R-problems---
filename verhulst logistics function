@@ -1,17 +1,21 @@
 ###below a function that considers how much recruits ( new population) to be added to each subsequent year (iteration)
 
-ver_logistics <- function(time, parms){    #function and matrix creator
-  with(as.list(parms),{
-    y <- r * N * (1 - (N/K))   # equation for each iteration of population
-    N <- c()                   #new string
-      for (i in 1:length(N)){
-        grwth <- c(N,sum(y[1:i]))
-      }# closed loop
-
-    as.matrix(tibble(time = time, density = N))    # creates the matrix dataset
-  }
-       )
+ver_logistics <- function(time, params){    #function and matrix creator
+  N <- params$N # population, only first element initialized?
+  r <- params$r # growth ratio
+  K <- params$K # K constant
+  y <- numeric(length(N))
+  for (i in seq_len(N-1)){
+    Ni <- N[i]
+    yi <- r * Ni * (1 - (Ni/K))   # equation for each iteration of population
+    y[i] <- y
+    N[i+1] <- sum(y[1:i])
+  }# close0d loop
+  
+  as.matrix(tibble(time = time, density = N))    # creates the matrix dataset
 }
+
+### Usage
 ### paramters
 t = seq(2015,2021,1)  # time interval for nearby
 N_0 = 134
@@ -19,7 +23,7 @@ N = seq(1:7)
 N[1] = N_0
 
 ## new verhulsts matrix function
-output <- ver_logistics(t, parms = list(
+output <- ver_logistics(t, params = list(
   N = N, r = 0.35, K = 350
- )
+  )
 )
