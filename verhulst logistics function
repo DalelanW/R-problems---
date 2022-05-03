@@ -5,7 +5,7 @@ ver_logistics <- function(time, params){    #function and matrix creator
   r <- params$r # growth ratio
   K <- params$K # K constant
   y <- numeric(length(N))
-  for (i in seq_len(N-1)){
+  for (i in seq_len(length(N)-1)){
     Ni <- N[i]
     yi <- r * Ni * (1 - (Ni/K))   # equation for each iteration of population
     y[i] <- y
