@@ -12,3 +12,14 @@ ver_logistics <- function(time, parms){    #function and matrix creator
   }
        )
 }
+### paramters
+t = seq(2015,2021,1)  # time interval for nearby
+N_0 = 134
+N = seq(1:7)
+N[1] = N_0
+
+## new verhulsts matrix function
+output <- ver_logistics(t, parms = list(
+  N = N, r = 0.35, K = 350
+ )
+)
